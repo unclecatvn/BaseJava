@@ -19,5 +19,5 @@
 
 ## NẾU CẢM THẤY HAY, MỜI EM LY CAFE
 
-<img  src="https://github.com/unclecatvn/BaseJava/assets/22569541/434da0cb-50f5-491d-8321-7f31ec4db3ac"  alt="Database"  width="50%"></img>
+<img  src="https://github.com/unclecatvn/BaseJava/assets/22569541/434da0cb-50f5-491d-8321-7f31ec4db3ac"  alt="Database"  width="20%"></img>
 
