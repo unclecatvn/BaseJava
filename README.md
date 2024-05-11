@@ -1,4 +1,4 @@
-# Mã nguồn JAVA SERVERLET JSP theo mô hình MVC design pattern
+# Mã nguồn JAVA WEB VỚI MAVEN theo mô hình MVC design pattern
 
 ## 1. Mô tả:
 - Hệ thống được xây dựng sẽ là hệ thống mang lại sự dễ dàng cho việc sử dụng, bảo mật trong việc quản lý và hoàn toàn có thể nâng cấp, sửa đổi về sau này.
@@ -9,7 +9,7 @@
 -   Ngôn ngữ lập trình Java JDK 8.
 -   Phần mềm để lập trình: Apache Netbeans IDE 13.
 -   Server: Apache Tomcat 10.0.
--   Mô hình MVC design pattern JSP và Servlet.
+-   Mô hình MVC design pattern JSP và Servlet, Maven.
 -   Dữ liệu được lưu trữ bởi hệ quản trị cơ sở dữ liệu MySQL hoặc SQL SERVER.
 
 ## 3. Sự khác biệt:
