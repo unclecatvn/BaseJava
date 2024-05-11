@@ -6,12 +6,13 @@
 
 ## 2. Công nghệ:
 
--   Ngôn ngữ lập trình Java JDK 8, Tomcat 10.0.
--   Phần mềm để lập trình: Apache Netbeans IDE 13
+-   Ngôn ngữ lập trình Java JDK 8.
+-   Phần mềm để lập trình: Apache Netbeans IDE 13.
+-   Server: Apache Tomcat 10.0.
 -   Mô hình MVC design pattern JSP và Servlet.
 -   Dữ liệu được lưu trữ bởi hệ quản trị cơ sở dữ liệu MySQL hoặc SQL SERVER.
 
 ## 3. Sự khác biệt:
 
-- ```java db.properties``` trong ```javasrc/resources/db.properties```: thay đổi cơ sở dữ liệu dễ dàng
-- Sử dụng mô hình MVC design pattern, có thể tái sử dụng code
+- ```java db.properties``` trong ```javasrc/resources/db.properties```: thay đổi cơ sở dữ liệu dễ dàng.
+- Sử dụng mô hình MVC design pattern, có thể tái sử dụng code.
