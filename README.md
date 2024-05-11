@@ -14,5 +14,5 @@
 
 ## 3. Sự khác biệt:
 
-- ```java db.properties``` trong ```java src/resources/db.properties```: thay đổi cơ sở dữ liệu ```java DB_CONNECTION=sqlserver``` hoặc ```java DB_CONNECTION=mysql``` một cách dễ dàng.
+- ```db.properties``` trong ```src/resources/db.properties```: thay đổi cơ sở dữ liệu ```DB_CONNECTION=sqlserver``` hoặc ```DB_CONNECTION=mysql``` một cách dễ dàng.
 - Sử dụng mô hình MVC design pattern, có thể tái sử dụng code.
