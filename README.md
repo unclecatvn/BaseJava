@@ -16,3 +16,8 @@
 
 - ```db.properties``` trong ```src/resources/db.properties```: thay đổi cơ sở dữ liệu ```DB_CONNECTION=sqlserver``` hoặc ```DB_CONNECTION=mysql``` một cách dễ dàng.
 - Sử dụng mô hình MVC design pattern, có thể tái sử dụng code.
+
+## NẾU CẢM THẤY HAY, MỜI EM LY CAFE
+
+![1715455958618](https://github.com/unclecatvn/BaseJava/assets/22569541/434da0cb-50f5-491d-8321-7f31ec4db3ac)
+
