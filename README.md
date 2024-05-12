@@ -30,6 +30,18 @@ Router.get("/home", (req, res) -> {
 ```
 Sau đó tạo java class ở controller để sử dụng (Ở đây là HomeController là java class).
 
+```
+    <servlet>
+        <servlet-name>RouterServlet</servlet-name>
+        <servlet-class>controller.RouterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RouterServlet</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+```
+Đây là file cấu hình web.xml
+
 ## 4. Cấu hình cơ bản:
 
 ##### Sửa đổi để sử dụng JAVA 8
