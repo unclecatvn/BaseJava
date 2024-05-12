@@ -16,6 +16,24 @@
 ## 3. Sự khác biệt:
 
 - ```db.properties``` trong ```src/resources/db.properties```: thay đổi cơ sở dữ liệu ```DB_CONNECTION=sqlserver``` hoặc ```DB_CONNECTION=mysql``` một cách dễ dàng.
+- Sử dụng router để cấu hình controller, dưới đây là ví dụ:
+```
+Router.get("/home", (req, res) -> {
+            try {
+                new HomeController().index(req, res);
+            } catch (ServletException ex) {
+                Logger.getLogger(RouterServlet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(RouterServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+```
+Sau đó tạo java class ở controller để sử dụng.
+
+## 4. Cấu hình cơ bản:
+
+### Sửa đổi để sử dụng JAVA 8
+- Chuột phải dự án -> Properties -> Sources -> Source/Binary Format -> Đổi sang 1.8 
 
 ## NẾU CẢM THẤY HAY, MỜI MÌNH LY CAFE, MÌNH CẢM ƠN! 
 
