@@ -13,18 +13,15 @@ import java.util.logging.Logger;
 
 public class DBContext {
 
-    protected Connection connection;
+    private static Connection connection;
     private static final Logger LOGGER = Logger.getLogger(DBContext.class.getName());
 
     static {
         AnsiConsole.systemInstall();
-    }
-
-    public DBContext() {
         initializeDBConnection();
     }
 
-    private void initializeDBConnection() {
+    private static void initializeDBConnection() {
         Properties props = new Properties();
         try {
             props.load(new FileInputStream("src/resources/db.properties"));
@@ -36,7 +33,7 @@ public class DBContext {
         }
     }
 
-    private void setupConnection(Properties props) throws Exception {
+    private static void setupConnection(Properties props) throws Exception {
         String dbType = props.getProperty("DB_CONNECTION");
         String driver = dbType.equals("mysql") ? "com.mysql.cj.jdbc.Driver" : "com.microsoft.sqlserver.jdbc.SQLServerDriver";
         Class.forName(driver);
@@ -49,7 +46,7 @@ public class DBContext {
         LOGGER.log(Level.INFO, "Connection to database {0} successful.", props.getProperty(dbType + ".database"));
     }
 
-    private String buildConnectionString(Properties props, String dbType) {
+    private static String buildConnectionString(Properties props, String dbType) {
         String host = props.getProperty(dbType + ".host");
         String port = props.getProperty(dbType + ".port");
         String database = props.getProperty(dbType + ".database");
@@ -58,6 +55,10 @@ public class DBContext {
         } else {
             return "jdbc:sqlserver://" + host + ":" + port + ";databaseName=" + database + ";encrypt=true;trustServerCertificate=true;";
         }
+    }
+
+    public static Connection getConnection() {
+        return connection;
     }
 
     protected void finalize() throws Throwable {
