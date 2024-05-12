@@ -32,7 +32,7 @@ Sau đó tạo java class ở controller để sử dụng (Ở đây là HomeCo
 
 ## 4. Cấu hình cơ bản:
 
-### Sửa đổi để sử dụng JAVA 8
+##### Sửa đổi để sử dụng JAVA 8
 - Chuột phải dự án -> Properties -> Sources -> Source/Binary Format -> Đổi sang 1.8 
 
 ## NẾU CẢM THẤY HAY, MỜI MÌNH LY CAFE, MÌNH CẢM ƠN! 
