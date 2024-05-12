@@ -28,7 +28,7 @@ Router.get("/home", (req, res) -> {
             }
         });
 ```
-Sau đó tạo java class ở controller để sử dụng.
+Sau đó tạo java class ở controller để sử dụng (Ở đây là HomeController là java class).
 
 ## 4. Cấu hình cơ bản:
 
