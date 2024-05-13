@@ -15,8 +15,24 @@
 
 ## 3. Sự khác biệt:
 
+#### 1. Cách sử dụng cơ sở dữ liệu
+
 - ```db.properties``` trong ```src/resources/db.properties```: thay đổi cơ sở dữ liệu ```DB_CONNECTION=sqlserver``` hoặc ```DB_CONNECTION=mysql``` một cách dễ dàng.
-- Sử dụng router để cấu hình controller, dưới đây là ví dụ:
+
+#### 2. Cách sử dụng router riêng của controller
+
+- Tạo java class ở controller để sử dụng (Ở đây là HomeController là java class).
+```
+    <servlet>
+        <servlet-name>RouterServlet</servlet-name>
+        <servlet-class>controller.RouterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RouterServlet</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+```
+Đây là file cấu hình web.xml. Sử dụng router để cấu hình controller, dưới đây là ví dụ:
 ```
 Router.get("/home", (req, res) -> {
             try {
@@ -28,19 +44,6 @@ Router.get("/home", (req, res) -> {
             }
         });
 ```
-Sau đó tạo java class ở controller để sử dụng (Ở đây là HomeController là java class).
-
-```
-    <servlet>
-        <servlet-name>RouterServlet</servlet-name>
-        <servlet-class>controller.RouterServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>RouterServlet</servlet-name>
-        <url-pattern>/*</url-pattern>
-    </servlet-mapping>
-```
-Đây là file cấu hình web.xml
 
 ## 4. Cấu hình cơ bản:
 
