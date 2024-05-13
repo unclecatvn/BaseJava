@@ -21,7 +21,7 @@
 
 #### 2. Cách sử dụng router riêng của controller
 
-- Tạo java class ở controller để sử dụng (Ở đây là HomeController là java class).
+- Cấu hình file web.xml
 ```
     <servlet>
         <servlet-name>RouterServlet</servlet-name>
@@ -32,7 +32,7 @@
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
 ```
-Đây là file cấu hình web.xml. Sử dụng router để cấu hình controller, dưới đây là ví dụ:
+Tạo java class ở controller để sử dụng (Ở đây là HomeController là java class), sử dụng router để cấu hình controller, dưới đây là ví dụ:
 ```
 Router.get("/home", (req, res) -> {
             try {
