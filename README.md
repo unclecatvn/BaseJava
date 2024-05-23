@@ -21,28 +21,18 @@
 
 #### 2. Cách sử dụng router riêng của controller
 
-- Cấu hình file web.xml
+Tạo java class ở controller để sử dụng (Ở đây là HomeController là java class), sử dụng RouteConfig để trỏ về controller và đường dẫn, dưới đây là ví dụ:
 ```
-    <servlet>
-        <servlet-name>RouterServlet</servlet-name>
-        <servlet-class>controller.RouterServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>RouterServlet</servlet-name>
-        <url-pattern>/*</url-pattern>
-    </servlet-mapping>
-```
-Tạo java class ở controller để sử dụng (Ở đây là HomeController là java class), sử dụng router để cấu hình controller, dưới đây là ví dụ:
-```
-Router.get("/home", (req, res) -> {
-            try {
-                new HomeController().index(req, res);
-            } catch (ServletException ex) {
-                Logger.getLogger(RouterServlet.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(RouterServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
+package router;
+import controller.HomeController;
+public class RouteConfig {
+    public static void setupRoutes() {
+        Router.register("GET", "/home", HomeController.class, "index");
+        // Đăng ký thêm các route khác tại đây
+        // Ví dụ: Router.register("GET", "/about", AboutController.class, "index");
+        // Router.register("POST", "/login", AuthController.class, "login");
+    }
+}
 ```
 
 ## 4. Cấu hình cơ bản:
