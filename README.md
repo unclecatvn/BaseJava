@@ -15,8 +15,24 @@
 
 ## 3. Sự khác biệt:
 
+#### 1. Cách sử dụng cơ sở dữ liệu
+
 - ```db.properties``` trong ```src/resources/db.properties```: thay đổi cơ sở dữ liệu ```DB_CONNECTION=sqlserver``` hoặc ```DB_CONNECTION=mysql``` một cách dễ dàng.
-- Sử dụng router để cấu hình controller, dưới đây là ví dụ:
+
+#### 2. Cách sử dụng router riêng của controller
+
+- Cấu hình file web.xml
+```
+    <servlet>
+        <servlet-name>RouterServlet</servlet-name>
+        <servlet-class>controller.RouterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RouterServlet</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+```
+Tạo java class ở controller để sử dụng (Ở đây là HomeController là java class), sử dụng router để cấu hình controller, dưới đây là ví dụ:
 ```
 Router.get("/home", (req, res) -> {
             try {
@@ -28,23 +44,10 @@ Router.get("/home", (req, res) -> {
             }
         });
 ```
-Sau đó tạo java class ở controller để sử dụng (Ở đây là HomeController là java class).
-
-```
-    <servlet>
-        <servlet-name>RouterServlet</servlet-name>
-        <servlet-class>controller.RouterServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>RouterServlet</servlet-name>
-        <url-pattern>/*</url-pattern>
-    </servlet-mapping>
-```
-Đây là file cấu hình web.xml
 
 ## 4. Cấu hình cơ bản:
 
-##### Sửa đổi để sử dụng JAVA 8
+#### Sửa đổi để sử dụng JAVA 8
 - Chuột phải dự án -> Properties -> Sources -> Source/Binary Format -> Đổi sang 1.8 
 
 ## NẾU CẢM THẤY HAY, MỜI MÌNH LY CAFE, MÌNH CẢM ƠN! 
