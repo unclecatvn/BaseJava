@@ -1,4 +1,4 @@
-# Mã nguồn JAVA WEB VỚI MAVEN theo mô hình MVC design pattern
+# Mã nguồn JAVA WEB VỚI MAVEN theo mô hình MVC design pattern có route riêng
 
 ## 1. Mô tả:
 - Hệ thống được xây dựng sẽ là hệ thống mang lại sự dễ dàng cho việc sử dụng, bảo mật trong việc quản lý và hoàn toàn có thể nâng cấp, sửa đổi về sau này.
@@ -31,6 +31,23 @@ public class RouteConfig {
         // Đăng ký thêm các route khác tại đây
         // Ví dụ: Router.register("GET", "/about", AboutController.class, "index");
         // Router.register("POST", "/login", AuthController.class, "login");
+    }
+}
+```
+
+Homecontroller chỉ cần khai báo function và gọi tới view như này:
+```
+package controller;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+public class HomeController {
+
+    public static void index(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 }
 ```
