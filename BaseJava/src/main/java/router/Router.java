@@ -1,5 +1,6 @@
 package router;
 
+import jakarta.servlet.ServletException;
 import java.util.HashMap;
 import java.util.Map;
 import java.lang.reflect.Method;
@@ -20,33 +21,23 @@ public class Router {
 
     // Phương thức xử lý routing cho mỗi request
     public static void route(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String contextPath = request.getContextPath();
-        String requestURI = request.getRequestURI();
-        // Loại bỏ context path để lấy đường dẫn thực tế
-        String pathInfo = requestURI.substring(contextPath.length());
+        String contextPath = request.getContextPath(); // Lấy context path
+        String requestURI = request.getRequestURI(); // Lấy URI được yêu cầu
+        String pathInfo = requestURI.substring(contextPath.length()); // Loại bỏ context path
 
         String httpMethod = request.getMethod();
-        // Tạo khóa để tìm route tương ứng
         String key = httpMethod + " " + (pathInfo != null ? pathInfo : "/");
         Route route = routes.get(key);
 
-        // In ra thông tin route và khóa để debug
-//        System.out.println("Route: " + route);
-//        System.out.println("Key used for lookup: " + key);
-
-        // Kiểm tra xem có route tương ứng không
         if (route != null) {
             try {
-                // Lấy phương thức từ controller tương ứng với route
                 Method actionMethod = route.getController().getMethod(route.getMethodName(), HttpServletRequest.class, HttpServletResponse.class);
-                // Gọi phương thức đó với thể hiện mới của controller
                 actionMethod.invoke(route.getController().newInstance(), request, response);
             } catch (Exception e) {
                 e.printStackTrace();
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Internal server error");
             }
         } else {
-            // Nếu không tìm thấy route, trả về lỗi 404
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "Page not found");
         }
     }
