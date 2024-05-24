@@ -1,4 +1,4 @@
-# Mã nguồn JAVA WEB VỚI MAVEN theo mô hình MVC design pattern có route riêng
+# Mã nguồn JAVA WEB theo mô hình MVC design pattern
 
 ## 1. Mô tả:
 - Hệ thống được xây dựng sẽ là hệ thống mang lại sự dễ dàng cho việc sử dụng, bảo mật trong việc quản lý và hoàn toàn có thể nâng cấp, sửa đổi về sau này.
