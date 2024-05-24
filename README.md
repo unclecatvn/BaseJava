@@ -24,15 +24,21 @@
 Tạo java class ở controller để sử dụng (Ở đây là HomeController là java class), sử dụng RouteConfig để trỏ về controller và đường dẫn, dưới đây là ví dụ:
 ```
 package router;
+
 import controller.HomeController;
+
 public class RouteConfig {
+
     public static void setupRoutes() {
-        Router.register("GET", "/home", HomeController.class, "index");
+        Router.register("GET", "/", HomeController.class, "index");
         // Đăng ký thêm các route khác tại đây
-        // Ví dụ: Router.register("GET", "/about", AboutController.class, "index");
-        // Router.register("POST", "/login", AuthController.class, "login");
+
+        Router.group("/auth", () -> {
+            Router.register("GET", "login", HomeController.class, "index1");
+        });
     }
 }
+
 ```
 
 Homecontroller chỉ cần khai báo function và gọi tới view như này:
