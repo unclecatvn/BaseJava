@@ -26,15 +26,20 @@ Tạo java class ở controller để sử dụng (Ở đây là HomeController 
 package router;
 
 import controller.HomeController;
+import middleware.AuthenticationMiddleware;
 
 public class RouteConfig {
 
     public static void setupRoutes() {
         Router.register("GET", "/", HomeController.class, "index");
         // Đăng ký thêm các route khác tại đây
+        
+        Router.group("/auth", () -> {
+            Router.register("GET", "login", HomeController.class, "index");
+        }).addMiddleware(new AuthenticationMiddleware()).applyMiddlewares();
 
         Router.group("/auth", () -> {
-            Router.register("GET", "login", HomeController.class, "index1");
+            Router.register("GET", "test", HomeController.class, "test");
         });
     }
 }
@@ -56,6 +61,53 @@ public class HomeController {
 }
 
 ```
+
+#### 3. Cách sử dụng middleware (phân quyền)
+- Dưới đây là ví dụ AuthenticationMiddleware.java
+```
+package middleware;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import router.Middleware;
+import util.ViewUtils;
+
+public class AuthenticationMiddleware implements Middleware {
+
+    @Override
+    public boolean handle(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        // Kiểm tra xác thực và role
+        if (!isAuthenticated(request)) {
+            ViewUtils.redirect("/auth/test");
+            return false;
+        }
+
+        // Kiểm tra role
+        if (!isAdmin(request)) {
+            response.sendRedirect(request.getContextPath() + "/home");  // Chuyển hướng nếu không phải admin
+            return false;
+        }
+        System.out.println("123123");
+
+        return true;
+    }
+
+    private boolean isAuthenticated(HttpServletRequest request) {
+        // Xử lý kiểm tra
+        return request.getSession().getAttribute("user") != null;
+    }
+
+    private boolean isAdmin(HttpServletRequest request) {
+        // Lấy role từ session và kiểm tra
+        String role = (String) request.getSession().getAttribute("role");
+        return "admin".equals(role);
+    }
+}
+
+```
+
 
 ## 4. Cấu hình cơ bản:
 
