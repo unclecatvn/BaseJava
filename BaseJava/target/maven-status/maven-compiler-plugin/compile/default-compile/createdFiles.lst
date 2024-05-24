@@ -1,0 +1,15 @@
+controller\BaseRequiredAuthenController.class
+controller\HomeController.class
+router\RouteConfig.class
+router\Route.class
+router\Router$RouteGroup.class
+dal\DBContext.class
+router\Router.class
+util\WebContextFilter.class
+util\ExceptionHandler.class
+router\RouterFilter.class
+router\Middleware.class
+middleware\AuthenticationMiddleware.class
+util\ViewUtils.class
+util\WebContext.class
+model\User.class

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -130,7 +131,7 @@ class Route {
     public Route(Class<?> controller, String methodName, List<Middleware> middlewares) {
         this.controller = controller;
         this.methodName = methodName;
-        this.middlewares = new ArrayList<>(middlewares); // Copy constructor để tránh tham chiếu trực tiếp
+        this.middlewares = new LinkedList<>(middlewares); // Sử dụng LinkedList thay vì ArrayList
     }
 
     public void addMiddleware(Middleware middleware) {
