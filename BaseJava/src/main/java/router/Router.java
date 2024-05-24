@@ -21,10 +21,11 @@ public class Router {
     private static Class<?> currentController = null;
     private static List<Middleware> currentMiddlewares = new ArrayList<>();
 
-    public static void register(String method, String path, Class<?> controller, String methodName) {
+    public static Route register(String method, String path, Class<?> controller, String methodName) {
         String fullPath = currentPrefix.isEmpty() ? path : currentPrefix + "/" + path;
         Route route = new Route(controller != null ? controller : currentController, methodName, new ArrayList<>(currentMiddlewares));
         routes.put(method + " " + fullPath, route);
+        return route;  // Trả về đối tượng Route để có thể thêm middleware sau khi khởi tạo
     }
 
     public static RouteGroup group(String prefix, Runnable routeDefinitions) {
@@ -134,8 +135,9 @@ class Route {
         this.middlewares = new LinkedList<>(middlewares); // Sử dụng LinkedList thay vì ArrayList
     }
 
-    public void addMiddleware(Middleware middleware) {
+    public Route addMiddleware(Middleware middleware) {
         middlewares.add(middleware);
+        return this;
     }
 
     public List<Middleware> getMiddlewares() {

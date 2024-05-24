@@ -13,7 +13,7 @@ public class AuthenticationMiddleware implements Middleware {
     public boolean handle(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         // Kiểm tra xác thực và role
         if (!isAuthenticated(request)) {
-            ViewUtils.redirect("/auth/test");
+            ViewUtils.redirect("/");
             return false;
         }
 

@@ -13,4 +13,9 @@ public class HomeController {
         ViewUtils.put("message", "Welcome to the Home Page!");
         ViewUtils.render("test/test");
     }
+    
+    public static void test1() {
+        ViewUtils.put("message", "Welcome to the Home Page!");
+        ViewUtils.render("test/test1");
+    }
 }
