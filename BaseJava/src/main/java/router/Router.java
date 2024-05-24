@@ -7,6 +7,7 @@ import java.util.function.Consumer;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import util.WebContext;
 
 public class Router {
 
@@ -34,19 +35,20 @@ public class Router {
         currentController = previousController;  // Khôi phục controller trước đó
     }
 
-    public static void route(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public static void route() throws IOException {
+        HttpServletRequest request = WebContext.getCurrentRequest();
+        HttpServletResponse response = WebContext.getCurrentResponse();
         String contextPath = request.getContextPath();
         String requestURI = request.getRequestURI();
         String pathInfo = requestURI.substring(contextPath.length());
-
         String httpMethod = request.getMethod();
         String key = httpMethod + " " + (pathInfo != null ? pathInfo : "/");
         Route route = routes.get(key);
 
         if (route != null) {
             try {
-                Method actionMethod = route.getController().getMethod(route.getMethodName(), HttpServletRequest.class, HttpServletResponse.class);
-                actionMethod.invoke(route.getController().newInstance(), request, response);
+                Method actionMethod = route.getController().getMethod(route.getMethodName());
+                actionMethod.invoke(route.getController().newInstance());
             } catch (Exception e) {
                 e.printStackTrace();
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Internal server error");

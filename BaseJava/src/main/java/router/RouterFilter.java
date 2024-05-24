@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import util.WebContext;
 
 // WebFilter annotation chỉ định filter này áp dụng cho mọi URL pattern
 @WebFilter("/*")
@@ -29,20 +30,18 @@ public class RouterFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-        // Lấy context path của ứng dụng (phần URL trước servlet path)
-        String contextPath = httpRequest.getContextPath();
-        // Lấy URI được yêu cầu hoàn chỉnh
-        String requestURI = httpRequest.getRequestURI();
-        // Xác định đường dẫn thực tế được yêu cầu, bỏ qua context path
-        String path = requestURI.substring(contextPath.length());
+        WebContext.setCurrentRequest(httpRequest);
+        WebContext.setCurrentResponse(httpResponse);
 
-        // Kiểm tra nếu đường dẫn không bắt đầu bằng "/assets" (thường là các tài nguyên tĩnh)
-        if (!path.startsWith("/assets")) {
-            // Nếu không phải tài nguyên tĩnh, xử lý đường dẫn bằng cách sử dụng router đã định nghĩa
-            Router.route(httpRequest, httpResponse);
-        } else {
-            // Nếu là tài nguyên tĩnh, cho phép request tiếp tục đi qua các filter tiếp theo (nếu có)
-            chain.doFilter(request, response);
+        try {
+            String path = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
+            if (!path.startsWith("/assets")) {
+                Router.route();
+            } else {
+                chain.doFilter(request, response);
+            }
+        } finally {
+            WebContext.clear();
         }
     }
 }
