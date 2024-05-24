@@ -13,7 +13,13 @@
 -   Mô hình MVC design pattern JSP và Servlet, Maven.
 -   Dữ liệu được lưu trữ bởi hệ quản trị cơ sở dữ liệu MySQL hoặc SQL SERVER.
 
-## 3. Sự khác biệt:
+## 3. Sự khác biệt
+
+- Có route riêng, dễ dàng xử lí controller
+- Có middlaware áp dụng vào route riêng, dễ dàng phân quyền
+- Có query builder, dễ dàng tái sử dụng được các câu lệnh query từ database (Chưa xử lí)
+
+## 4. Hướng dẫn cơ bản
 
 #### 1. Cách sử dụng cơ sở dữ liệu
 
