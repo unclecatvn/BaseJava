@@ -107,7 +107,7 @@ public class AuthenticationMiddleware implements Middleware {
 }
 
 ```
-
+- Bổ sung thêm ``` .addMiddleware(new Middleware()).applyMiddlewares(); ``` vào route để phân quyền
 
 ## 4. Cấu hình cơ bản:
 
