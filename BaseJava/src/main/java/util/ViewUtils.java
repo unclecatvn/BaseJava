@@ -22,4 +22,23 @@ public class ViewUtils {
             ExceptionHandler.handleException(WebContext.getCurrentRequest(), WebContext.getCurrentResponse(), e);
         }
     }
+
+    public static void redirect(String path) {
+        try {
+            HttpServletRequest request = WebContext.getCurrentRequest();
+            HttpServletResponse response = WebContext.getCurrentResponse();
+            response.sendRedirect(request.getContextPath() + path);
+        } catch (IOException e) {
+            ExceptionHandler.handleException(WebContext.getCurrentRequest(), WebContext.getCurrentResponse(), e);
+        }
+    }
+
+    public static void sendError(int statusCode, String message) {
+        try {
+            HttpServletResponse response = WebContext.getCurrentResponse();
+            response.sendError(statusCode, message);
+        } catch (IOException e) {
+            ExceptionHandler.handleException(WebContext.getCurrentRequest(), WebContext.getCurrentResponse(), e);
+        }
+    }
 }

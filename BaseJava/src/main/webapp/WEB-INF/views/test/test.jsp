@@ -1,6 +1,6 @@
 <%-- 
-    Document   : home
-    Created on : May 12, 2024, 8:01:13 PM
+    Document   : test
+    Created on : May 24, 2024, 11:13:45 PM
     Author     : Hoai Nam
 --%>
 
@@ -12,7 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <h2>Nam đẹp trai</h2>
+        <h1>Đây là file test</h1>
     </body>
 </html>

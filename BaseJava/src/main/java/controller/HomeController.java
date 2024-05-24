@@ -8,4 +8,9 @@ public class HomeController {
         ViewUtils.put("message", "Welcome to the Home Page!");
         ViewUtils.render("auth/login");
     }
+
+    public static void test() {
+        ViewUtils.put("message", "Welcome to the Home Page!");
+        ViewUtils.render("test/test");
+    }
 }
