@@ -1,29 +1,43 @@
 package router;
 
-import jakarta.servlet.ServletException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
-import java.lang.reflect.Method;
+import java.util.function.Consumer;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class Router {
 
-    // Tạo một map để lưu trữ các route, mỗi route liên kết một chuỗi khóa với một đối tượng Route
     private static final Map<String, Route> routes = new HashMap<>();
+    private static String currentPrefix = "";
+    private static Class<?> currentController = null;
 
-    // Phương thức để đăng ký một route mới
     public static void register(String method, String path, Class<?> controller, String methodName) {
-        // Lưu trữ route vào map với khóa là phương thức HTTP và đường dẫn
-        routes.put(method + " " + path, new Route(controller, methodName));
+        // Nếu currentPrefix không rỗng, nối nó với path
+        String fullPath = currentPrefix.isEmpty() ? path : currentPrefix + "/" + path;
+        routes.put(method + " " + fullPath, new Route(controller != null ? controller : currentController, methodName));
     }
 
-    // Phương thức xử lý routing cho mỗi request
+    public static void group(String prefix, Runnable routeDefinitions) {
+        String previousPrefix = currentPrefix;
+        currentPrefix = prefix;  // Cập nhật currentPrefix
+        routeDefinitions.run();  // Chạy block định nghĩa route
+        currentPrefix = previousPrefix;  // Khôi phục prefix trước đó
+    }
+
+    public static void controller(Class<?> controller, Runnable routeDefinitions) {
+        Class<?> previousController = currentController;
+        currentController = controller;  // Cập nhật currentController
+        routeDefinitions.run();  // Chạy block định nghĩa route
+        currentController = previousController;  // Khôi phục controller trước đó
+    }
+
     public static void route(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String contextPath = request.getContextPath(); // Lấy context path
-        String requestURI = request.getRequestURI(); // Lấy URI được yêu cầu
-        String pathInfo = requestURI.substring(contextPath.length()); // Loại bỏ context path
+        String contextPath = request.getContextPath();
+        String requestURI = request.getRequestURI();
+        String pathInfo = requestURI.substring(contextPath.length());
 
         String httpMethod = request.getMethod();
         String key = httpMethod + " " + (pathInfo != null ? pathInfo : "/");
@@ -48,18 +62,15 @@ class Route {
     private Class<?> controller;
     private String methodName;
 
-    // Constructor cho Route, nhận controller và methodName để sau này có thể gọi
     public Route(Class<?> controller, String methodName) {
         this.controller = controller;
         this.methodName = methodName;
     }
 
-    // Getter cho controller
     public Class<?> getController() {
         return controller;
     }
 
-    // Getter cho methodName
     public String getMethodName() {
         return methodName;
     }
