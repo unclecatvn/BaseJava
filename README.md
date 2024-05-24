@@ -62,7 +62,7 @@ public class HomeController {
 #### Sửa đổi để sử dụng JAVA 8
 - Chuột phải dự án -> Properties -> Sources -> Source/Binary Format -> Đổi sang 1.8 
 
-## NẾU CẢM THẤY HAY, MỜI MÌNH LY CAFE, MÌNH CẢM ƠN! 
+## NẾU CẢM THẤY HAY, ỦNG HỘ MÌNH BẰNG CÁCH DƯỚI ĐÂY! 
 
 <img  src="https://github.com/unclecatvn/BaseJava/assets/22569541/434da0cb-50f5-491d-8321-7f31ec4db3ac"  alt="Database"  width="35%"></img>
 
